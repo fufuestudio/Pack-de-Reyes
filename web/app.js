@@ -6,6 +6,7 @@ import { svgCoronaIlustrada } from './lib/ilustracion.js';
 import { CONFIG, PACKS, LOGROS, COLORES, DISENOS_CORONA, MAX_LETRAS_NOMBRE, CERTIFICADO_DORSO } from './catalogo.js';
 import { HISTORIAS, historiasDelPack } from './historias.js';
 import { svgNombre } from './lib/titulo.js';
+import { NARRADORA } from './narradora.js';
 
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
@@ -89,19 +90,97 @@ function preparaCarrusel() {
 
 function textoBotonAbrir() {
   const t = estado.pack ? 'Continuar mi pedido' : 'Personalizar mi pack';
-  $$('[data-abrir]').forEach((b) => { b.textContent = t; });
+  $$('[data-abrir]').forEach((b) => { if (!b.closest('#estela-portada')) b.textContent = t; });
 }
+
+// =====================================================================
+//  Estela, la paje narradora (voz grabada con ElevenLabs en audio/<clave>.mp3)
+// =====================================================================
+const CLAVE_VOZ = 'fufu-voz';
+let vozActiva = true;
+try { vozActiva = localStorage.getItem(CLAVE_VOZ) !== 'no'; } catch { /* nada */ }
+const voz = new Audio();
+voz.preload = 'auto';
+let fraseActual = null, temporizadorTexto = null;
+
+function escribe(el, texto, msTotal) {
+  clearInterval(temporizadorTexto);
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = texto; return; }
+  let i = 0;
+  const paso = Math.max(12, Math.min(70, msTotal / texto.length));
+  el.textContent = '';
+  temporizadorTexto = setInterval(() => {
+    i += 2;
+    el.textContent = texto.slice(0, i);
+    if (i >= texto.length) { el.textContent = texto; clearInterval(temporizadorTexto); }
+  }, paso * 2);
+}
+
+function habla(clave, el, caja) {
+  const texto = NARRADORA.frases[clave];
+  if (!texto || !el) return;
+  fraseActual = { clave, el, caja };
+  voz.pause();
+  caja?.classList.remove('hablando');
+  if (!vozActiva) { escribe(el, texto, texto.length * 22); return; }
+  voz.src = `audio/${clave}.mp3`;
+  let empezado = false;
+  const arranca = () => {
+    if (empezado) return; empezado = true;
+    escribe(el, texto, (voz.duration && isFinite(voz.duration) ? voz.duration * 1000 * 0.92 : texto.length * 55));
+  };
+  voz.onloadedmetadata = arranca;
+  setTimeout(arranca, 400); // por si el audio tarda o no existe
+  caja?.classList.add('hablando');
+  voz.play().catch(() => caja?.classList.remove('hablando'));
+}
+const callaEstela = () => { voz.pause(); $$('.hablando').forEach((e) => e.classList.remove('hablando')); };
+voz.addEventListener('ended', callaEstela);
+voz.addEventListener('error', callaEstela);
+
+function pintaBotonVoz() {
+  const b = $('#narradora-voz');
+  b.textContent = vozActiva ? '🔊' : '🔇';
+  b.setAttribute('aria-pressed', String(!vozActiva));
+  b.setAttribute('aria-label', vozActiva ? 'Silenciar la voz' : 'Activar la voz');
+}
+$('#narradora-voz').addEventListener('click', () => {
+  vozActiva = !vozActiva;
+  try { localStorage.setItem(CLAVE_VOZ, vozActiva ? 'si' : 'no'); } catch { /* nada */ }
+  pintaBotonVoz();
+  if (!vozActiva) callaEstela();
+  else if (fraseActual) habla(fraseActual.clave, fraseActual.el, fraseActual.caja);
+});
+$('#narradora-repetir').addEventListener('click', () => {
+  if (!vozActiva) { vozActiva = true; try { localStorage.setItem(CLAVE_VOZ, 'si'); } catch { /* nada */ } pintaBotonVoz(); }
+  if (fraseActual) habla(fraseActual.clave, fraseActual.el, fraseActual.caja);
+});
+// En la portada
+$('#estela-boton').addEventListener('click', () => {
+  $('#estela-boton').hidden = true;
+  $('#estela-portada').hidden = false;
+  if (!vozActiva) { vozActiva = true; try { localStorage.setItem(CLAVE_VOZ, 'si'); } catch { /* nada */ } }
+  habla('bienvenida', $('#estela-portada-texto'), $('#estela-portada'));
+});
+$('#estela-cerrar').addEventListener('click', () => {
+  callaEstela();
+  $('#estela-portada').hidden = true;
+  $('#estela-boton').hidden = false;
+});
 
 // =====================================================================
 //  Abrir / cerrar el configurador (con el botón atrás del móvil)
 // =====================================================================
 let entradasHistorial = 0;
 function abreApp() {
+  $('#estela-portada').hidden = true;
+  $('#estela-boton').hidden = false;
   $('#app').hidden = false;
   document.body.classList.add('app-abierta');
   muestra(estado.idx, true);
 }
 function cierraApp() {
+  callaEstela();
   $('#app').hidden = true;
   document.body.classList.remove('app-abierta');
   textoBotonAbrir();
@@ -165,6 +244,7 @@ function muestra(idx, apilar) {
   if (p.id === 'envio') pintaEnvio();
   if (p.id === 'resumen') pintaResumen();
   pintaEscenario();
+  habla(p.id, $('#narradora-texto'), $('#narradora'));
 }
 
 // Vista previa de arriba según la pantalla
@@ -759,6 +839,7 @@ $('#atras').addEventListener('click', () => {
 // =====================================================================
 pintaPlazo();
 preparaCarrusel();
+pintaBotonVoz();
 textoBotonAbrir();
 if (MODO_TALLER) $('#descargar-stl').hidden = false;
 iniciaVisor();

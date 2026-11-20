@@ -63,6 +63,20 @@
     <div class="cta-movil">
       <button type="button" class="btn btn-oro btn-grande" data-abrir>Personalizar mi pack</button>
     </div>
+
+    <!-- Estela, la paje narradora (portada) -->
+    <button type="button" class="estela-boton" id="estela-boton" aria-label="Escuchar a Estela, la paje de los Reyes">
+      <img src="img/estela.webp" alt="" width="56" height="56"><span>¿Te lo cuento?</span>
+    </button>
+    <div class="estela-portada" id="estela-portada" hidden role="dialog" aria-labelledby="estela-portada-nombre">
+      <div class="narradora-cab">
+        <img src="img/estela.webp" alt="" width="56" height="56">
+        <div><strong id="estela-portada-nombre">Estela</strong><span>Paje de los Reyes Magos</span></div>
+        <button type="button" class="btn-icono mini" id="estela-cerrar" aria-label="Cerrar">✕</button>
+      </div>
+      <p class="narradora-texto" id="estela-portada-texto"></p>
+      <button type="button" class="btn btn-oro btn-grande" data-abrir>¡Vamos a prepararlo!</button>
+    </div>
   </div>
 
   <!-- ============ CONFIGURADOR (pantalla completa) ============ -->
@@ -114,6 +128,15 @@
     </div>
 
     <main class="app-cuerpo" id="cuerpo">
+      <!-- Estela guía cada paso -->
+      <div class="narradora" id="narradora" aria-live="polite">
+        <img src="img/estela.webp" alt="Estela, paje de los Reyes" width="44" height="44">
+        <p class="narradora-texto" id="narradora-texto"></p>
+        <div class="narradora-botones">
+          <button type="button" class="btn-icono mini" id="narradora-repetir" aria-label="Volver a escuchar">↻</button>
+          <button type="button" class="btn-icono mini" id="narradora-voz" aria-label="Silenciar la voz" aria-pressed="false">🔊</button>
+        </div>
+      </div>
       <!-- Pack -->
       <div class="pantalla" data-p="pack">
         <h2>¿Para cuántos niños es?</h2>
