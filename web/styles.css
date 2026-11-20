@@ -142,7 +142,7 @@ em { font-style: normal; color: var(--burdeos); font-weight: 700; }
   background: linear-gradient(135deg, #fffaf0, #f6ead0); border: 1.5px solid var(--oro);
 }
 .narradora > img { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--oro); flex: none; }
-.narradora .narradora-texto { flex: 1; font-size: .9rem; min-height: 2.9em; }
+.narradora .narradora-texto { flex: 1; font-size: .9rem; min-height: 2.9em; max-height: 5.9em; overflow-y: auto; scrollbar-width: thin; }
 .narradora .narradora-texto::after { content: ''; }
 .narradora.hablando > img { animation: habla .5s ease-in-out infinite alternate; }
 @keyframes habla { from { box-shadow: 0 0 0 0 rgba(198, 154, 60, .6); } to { box-shadow: 0 0 0 5px rgba(198, 154, 60, 0); } }

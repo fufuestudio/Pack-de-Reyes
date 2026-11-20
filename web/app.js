@@ -112,6 +112,7 @@ function escribe(el, texto, msTotal) {
   temporizadorTexto = setInterval(() => {
     i += 2;
     el.textContent = texto.slice(0, i);
+    el.scrollTop = el.scrollHeight; // el texto sube solo mientras habla
     if (i >= texto.length) { el.textContent = texto; clearInterval(temporizadorTexto); }
   }, paso * 2);
 }
