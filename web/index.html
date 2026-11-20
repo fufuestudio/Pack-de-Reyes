@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7eedb">
+  <title>Pack de Reyes Magos · Fufú Studio</title>
+  <meta name="description" content="Personaliza el Pack de Reyes Magos de Fufú Studio: corona real impresa en 3D, libro personalizado, certificado y carta a los Reyes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600;700;800&family=Gloock&family=Source+Sans+3:wght@400;600&family=Crimson+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+      "three/examples/jsm/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/",
+      "polygon-clipping": "https://cdn.jsdelivr.net/npm/polygon-clipping@0.15.7/+esm",
+      "opentype.js": "https://cdn.jsdelivr.net/npm/opentype.js@1.3.4/dist/opentype.module.js"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- ============ PORTADA ============ -->
+  <div id="portada">
+    <header class="topbar">
+      <img class="marca" src="assets/logo.svg" alt="Fufú Studio" height="26">
+      <span class="topbar-plazo" id="plazo-mini"></span>
+    </header>
+
+    <section class="hero">
+      <div class="hero-foto">
+        <img src="img/pack-hermanos.webp" alt="Contenido del pack de hermanos: caja, libros, coronas, certificados, cartas y pegatinas" width="1000" height="1000">
+      </div>
+      <div class="hero-texto">
+        <p class="eyebrow">Colección Oficial de Logros Anuales</p>
+        <h1 class="titulo-img"><img src="img/titulo.webp" alt="Pack de Reyes Magos" width="1400" height="600"></h1>
+        <p class="lead">Porque solo los niños y las niñas que brillan reciben una <em>Corona Real</em>. Personaliza su corona, su cuento y su certificado firmado por Sus Majestades.</p>
+        <div class="plazo" id="plazo"></div>
+        <button type="button" class="btn btn-oro btn-grande solo-escritorio" data-abrir>Personalizar mi pack</button>
+      </div>
+    </section>
+
+    <section class="incluye">
+      <h2>Qué hay dentro</h2>
+      <ul class="carrusel" id="carrusel">
+        <li><img src="img/inc-corona.webp" alt="" loading="lazy" width="800" height="800"><b>Corona Real</b><span>Impresa en 3D con su nombre, el año y el color de su logro. Para colgarla el día de Reyes y sacarla cada Navidad.</span></li>
+        <li><img src="img/inc-libros.webp" alt="" loading="lazy" width="800" height="800"><b>Libro personalizado</b><span>La historia de cómo los Reyes le otorgan su corona.</span></li>
+        <li><img src="img/inc-certificado.webp" alt="" loading="lazy" width="800" height="800"><b>Certificado real</b><span>Con su nombre completo y firmado por Melchor, Gaspar y Baltasar.</span></li>
+        <li><img src="img/inc-carta.webp" alt="" loading="lazy" width="800" height="800"><b>Carta a los Reyes</b><span>Con su sobre real para escribir su deseo más especial.</span></li>
+        <li><img src="img/inc-pegatinas.webp" alt="" loading="lazy" width="800" height="800"><b>Pegatinas mágicas</b><span>Para seguir jugando y alargar la magia.</span></li>
+        <li><img src="img/inc-arbol.webp" alt="" loading="lazy" width="800" height="800"><b>Un recuerdo para siempre</b><span>Cada Navidad, su corona vuelve al árbol y recuerda todo lo que logró.</span></li>
+      </ul>
+      <div class="puntos" id="puntos" aria-hidden="true"></div>
+    </section>
+
+    <footer class="pie">
+      <img src="assets/logo.svg" alt="Fufú Studio" height="20">
+      <p>© <span id="anio-pie"></span> Fufú Studio. Hecho a mano con mucho cariño.</p>
+    </footer>
+
+    <div class="cta-movil">
+      <button type="button" class="btn btn-oro btn-grande" data-abrir>Personalizar mi pack</button>
+    </div>
+  </div>
+
+  <!-- ============ CONFIGURADOR (pantalla completa) ============ -->
+  <section id="app" class="app" hidden aria-labelledby="app-titulo">
+    <header class="app-cabecera">
+      <button type="button" class="btn-icono" id="cerrar" aria-label="Cerrar y volver a la portada">✕</button>
+      <div class="app-titulos">
+        <span class="app-paso" id="app-paso"></span>
+        <strong id="app-titulo"></strong>
+      </div>
+      <span class="chip-nino" id="chip-nino" hidden></span>
+    </header>
+    <div class="barra" aria-hidden="true"><span id="barra"></span></div>
+
+    <div class="escenario" id="escenario">
+      <div class="esc-tabs" id="esc-tabs" role="tablist" hidden>
+        <button type="button" role="tab" data-vista="corona">Corona</button>
+        <button type="button" role="tab" data-vista="cuento">Cuento</button>
+        <button type="button" role="tab" data-vista="cert">Certificado</button>
+      </div>
+      <div class="esc-items">
+        <!-- Corona 3D -->
+        <div class="esc-item" data-item="corona3d">
+          <div class="visor" id="visor" aria-label="Vista previa 3D de la corona">
+            <div class="visor-cargando" id="visor-cargando">Preparando la corona…</div>
+          </div>
+          <p class="esc-nota">Arrastra para girarla · <span id="medidas"></span></p>
+        </div>
+        <!-- Corona ilustrada (paso logro) -->
+        <div class="esc-item" data-item="ilus"><div class="ilus-logro" id="ilus-logro"></div></div>
+        <!-- Libro -->
+        <div class="esc-item" data-item="libro">
+          <div class="libro" id="libro"></div>
+          <div class="libro-nav" id="libro-nav">
+            <button type="button" class="btn-icono" id="pag-ant" aria-label="Página anterior">‹</button>
+            <span id="pag-num"></span>
+            <button type="button" class="btn-icono" id="pag-sig" aria-label="Página siguiente">›</button>
+          </div>
+        </div>
+        <!-- Certificado -->
+        <div class="esc-item" data-item="cert">
+          <div class="cert" id="cert"></div>
+          <div class="cert-caras" role="group" aria-label="Cara del certificado">
+            <button type="button" class="mini-tab" data-cara="frente" aria-pressed="true">Delante</button>
+            <button type="button" class="mini-tab" data-cara="dorso" aria-pressed="false">Detrás</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <main class="app-cuerpo" id="cuerpo">
+      <!-- Pack -->
+      <div class="pantalla" data-p="pack">
+        <h2>¿Para cuántos niños es?</h2>
+        <div class="packs" id="packs"></div>
+      </div>
+
+      <!-- Datos del niño -->
+      <form class="pantalla" data-p="datos" id="form-datos" autocomplete="off" novalidate>
+        <label>Nombre <small>(corona y cuento)</small>
+          <input name="nombre" maxlength="14" required placeholder="Ej. Olivia" autocapitalize="words" enterkeyhint="next">
+          <small class="ayuda" id="ayuda-nombre"></small>
+        </label>
+        <label>Apellidos <small>(certificado)</small>
+          <input name="apellidos" maxlength="40" required placeholder="Ej. Lucas Cabezas" autocapitalize="words" enterkeyhint="done">
+        </label>
+        <div class="seg" role="radiogroup" aria-label="Niño o niña">
+          <label><input type="radio" name="genero" value="nina"> Niña</label>
+          <label><input type="radio" name="genero" value="nino"> Niño</label>
+        </div>
+      </form>
+
+      <!-- Logro -->
+      <div class="pantalla" data-p="logro">
+        <p class="nota">Los Reyes ven una luz en el Gran Libro. Su color será el de la corona.</p>
+        <div class="logros" id="logros"></div>
+        <div class="logro-propio" id="logro-propio" hidden>
+          <label>Escribe su logro
+            <textarea id="logro-texto" maxlength="220" rows="2" placeholder="Ej. ha aprendido a leer y ha ayudado mucho a su hermana"></textarea>
+          </label>
+          <div class="colores" id="colores" role="group" aria-label="Color de la corona"></div>
+        </div>
+      </div>
+
+      <!-- Corona -->
+      <div class="pantalla" data-p="corona">
+        <div class="disenos" id="disenos"></div>
+        <button type="button" class="btn btn-linea" id="descargar-stl" hidden>Descargar STL (taller)</button>
+      </div>
+
+      <!-- Vista final del niño -->
+      <div class="pantalla" data-p="vista">
+        <p class="vista-texto" id="vista-texto"></p>
+      </div>
+
+      <!-- Envío -->
+      <form class="pantalla" data-p="envio" id="envio-form" autocomplete="on" novalidate>
+        <label>Nombre y apellidos<input name="nombre" autocomplete="name" required enterkeyhint="next"></label>
+        <label>Email<input name="email" type="email" autocomplete="email" inputmode="email" required enterkeyhint="next"></label>
+        <label>Teléfono<input name="telefono" type="tel" autocomplete="tel" inputmode="tel" required enterkeyhint="next"></label>
+        <label>Dirección<input name="direccion" autocomplete="street-address" required enterkeyhint="next"></label>
+        <div class="fila">
+          <label>Código postal<input name="cp" autocomplete="postal-code" inputmode="numeric" required enterkeyhint="next"></label>
+          <label>Ciudad<input name="ciudad" autocomplete="address-level2" required enterkeyhint="next"></label>
+        </div>
+        <label>Provincia<input name="provincia" autocomplete="address-level1" enterkeyhint="next"></label>
+        <label class="check"><input type="checkbox" name="urgente"> Envío urgente (hasta el <span id="fecha-urgente"></span>)</label>
+        <label>Notas para Fufú Studio<textarea name="notas" rows="2" placeholder="Algo que debamos saber"></textarea></label>
+      </form>
+
+      <!-- Resumen -->
+      <div class="pantalla" data-p="resumen">
+        <div class="resumen" id="resumen"></div>
+        <div class="enviar" id="enviar"></div>
+      </div>
+    </main>
+
+    <footer class="app-pie">
+      <p class="error" id="error" role="alert"></p>
+      <div class="app-botones">
+        <button type="button" class="btn btn-linea" id="atras">Atrás</button>
+        <button type="button" class="btn btn-oro" id="siguiente">Siguiente</button>
+      </div>
+    </footer>
+  </section>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

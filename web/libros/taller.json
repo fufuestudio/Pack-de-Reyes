@@ -1,0 +1,253 @@
+{
+ "paginas": [
+  {
+   "n": 3,
+   "img": "img/libros/taller/p03.webp",
+   "textos": [],
+   "huecos": [
+    {
+     "tipo": "titulo",
+     "x": 13.14,
+     "y": 31.75,
+     "w": 73.71,
+     "h": 36.5
+    }
+   ],
+   "subtitulo": "img/subtitulo-gran-logro.webp",
+   "subAlto": 34.4
+  },
+  {
+   "n": 4,
+   "img": "img/libros/taller/p04.webp",
+   "textos": [
+    {
+     "x": 17.86,
+     "y": 37.45,
+     "w": 64.29,
+     "h": 25.09,
+     "tam": 3.024,
+     "serif": false,
+     "fino": false,
+     "texto": "En lo más alto del Palacio de Oriente, donde las torres tocan las nubes, existe una habitación secreta que muy pocos conocen: El Taller de las Estrellas. Allí no se fabrican juguetes normales. Allí, entre engranajes de oro y vapor de nubes, se guardan los recuerdos más brillantes de todos los niños del mundo."
+    }
+   ],
+   "huecos": []
+  },
+  {
+   "n": 5,
+   "img": "img/libros/taller/p05.webp",
+   "textos": [],
+   "huecos": []
+  },
+  {
+   "n": 6,
+   "img": "img/libros/taller/p06.webp",
+   "textos": [
+    {
+     "x": 34.71,
+     "y": 31.64,
+     "w": 30.57,
+     "h": 7.3,
+     "tam": 7.56,
+     "serif": true,
+     "fino": false,
+     "texto": "{nombre}"
+    },
+    {
+     "x": 17.05,
+     "y": 22.38,
+     "w": 65.89,
+     "h": 55.25,
+     "tam": 3.024,
+     "serif": false,
+     "fino": false,
+     "texto": "—¡Mirad esto! —exclamó el Rey Gaspar, señalando una página que brillaba con fuerza—. Aquí dice que  \n\n\n\nha tenido un año increíble.\n\nEl Rey Baltasar se ajustó las gafas y sonrió: \n—Es cierto. Lo he visto desde mi camello. \nPero, ¿qué luz ha brillado más fuerte en su corazón este año?\n\nLos tres Reyes Magos observaron atentamente la luz que salía del libro. Esta no era una luz cualquiera..."
+    }
+   ],
+   "huecos": []
+  },
+  {
+   "n": 7,
+   "img": "img/libros/taller/p07.webp",
+   "textos": [],
+   "huecos": []
+  },
+  {
+   "n": 8,
+   "img": "img/libros/taller/p08.webp",
+   "textos": [],
+   "huecos": []
+  },
+  {
+   "n": 9,
+   "img": "img/libros/taller/p09.webp",
+   "textos": [
+    {
+     "x": 17.92,
+     "y": 66.75,
+     "w": 64.29,
+     "h": 14.74,
+     "tam": 3.024,
+     "serif": false,
+     "fino": false,
+     "texto": "—¡Es una luz {LUZ}! —dijo Melchor— \n{textoLuz}"
+    }
+   ],
+   "huecos": [
+    {
+     "tipo": "corona",
+     "x": 18.06,
+     "y": 4.38,
+     "w": 64.15,
+     "h": 55.72
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "img": "img/libros/taller/p10.webp",
+   "textos": [
+    {
+     "x": 17.05,
+     "y": 31.99,
+     "w": 65.89,
+     "h": 36.75,
+     "tam": 3.024,
+     "serif": false,
+     "fino": false,
+     "texto": "—Entonces está decidido —sentenció Baltasar, golpeando su bastón en el suelo—. \n\n{nombre} no necesita un regalo cualquiera! Merece su propia Corona Real de Logro Anual.\n\nRápidamente, los artesanos mágicos del palacio encendieron las máquinas de polvo de estrellas y comenzaron a tejer la corona con el color exacto de tu luz."
+    }
+   ],
+   "huecos": []
+  },
+  {
+   "n": 11,
+   "img": "img/libros/taller/p11.webp",
+   "textos": [],
+   "huecos": []
+  },
+  {
+   "n": 12,
+   "img": "img/libros/taller/p12.webp",
+   "textos": [
+    {
+     "x": 17.05,
+     "y": 26.12,
+     "w": 65.89,
+     "h": 47.75,
+     "tam": 3.024,
+     "serif": false,
+     "fino": false,
+     "texto": "Los artesanos grabaron tu nombre en el centro para que nunca se borre, porque un logro así es para siempre.\n\n—¿Y cómo sabrá que es auténtica? —preguntó Gaspar.\n\n—Le enviaremos el Certificado Oficial del Consejo Real —respondió Melchor, firmando el pergamino con su pluma de oro—. \n\nPara que cuando cuelgues esta corona, recuerdes siempre lo orgullosos que estamos de ti."
+    }
+   ],
+   "huecos": []
+  },
+  {
+   "n": 13,
+   "img": "img/libros/taller/p13.webp",
+   "textos": [],
+   "huecos": []
+  },
+  {
+   "n": 14,
+   "img": "img/libros/taller/p14.webp",
+   "textos": [
+    {
+     "x": 17.05,
+     "y": 33.59,
+     "w": 65.89,
+     "h": 40.12,
+     "tam": 3.024,
+     "serif": false,
+     "fino": false,
+     "texto": "Y así, metieron la corona y el certificado en esta caja especial, la sellaron con magia de Oriente y viajaron toda la noche siguiendo la estrella para llegar a tu casa.\n\nAhora, la corona es tuya, {nombre}.\n\nCuélgala hoy en el árbol, antes de que termine la Navidad, porque te la has ganado. Después, guárdala con los adornos: cada año será la primera en volver a brillar."
+    }
+   ],
+   "huecos": []
+  },
+  {
+   "n": 15,
+   "img": "img/libros/taller/p15.webp",
+   "textos": [],
+   "huecos": [
+    {
+     "tipo": "escena",
+     "x": 17,
+     "y": 30.6,
+     "w": 14.6,
+     "h": 15.6,
+     "giro": 0,
+     "nino": "propio",
+     "anio": 0
+    },
+    {
+     "tipo": "escena",
+     "x": 32.3,
+     "y": 68.4,
+     "w": 16.4,
+     "h": 14.2,
+     "giro": -6,
+     "nino": "propio",
+     "anio": -1,
+     "diseno": "contrario",
+     "color": "otro"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "img": "img/libros/taller/p16.webp",
+   "textos": [
+    {
+     "x": 13.06,
+     "y": 27.01,
+     "w": 73.87,
+     "h": 9.64,
+     "tam": 2.268,
+     "serif": false,
+     "fino": false,
+     "texto": "Antes de guardar este libro…\nEscribe o dibuja aquí tu deseo más especial para el próximo año. Así los Reyes lo podrán ver  y  así ¡hacerlo realidad!"
+    },
+    {
+     "x": 13.11,
+     "y": 89.28,
+     "w": 73.87,
+     "h": 5.84,
+     "tam": 2.52,
+     "serif": false,
+     "fino": false,
+     "texto": "“Este libro forma parte de la Colección Oficial de Logros Anual \ncreada por Fufú Studio junto al Consejo Real de Oriente.”"
+    },
+    {
+     "x": 17.05,
+     "y": 9.31,
+     "w": 65.89,
+     "h": 14.96,
+     "tam": 3.024,
+     "serif": false,
+     "fino": false,
+     "texto": "Que esta corona te recuerde siempre que los logros se construyen día a día, y que cada pequeño gesto ilumina el mundo más de lo que imaginas. Con cariño, Sus Majestades los Reyes Magos de Oriente."
+    }
+   ],
+   "huecos": []
+  },
+  {
+   "n": 17,
+   "img": "img/libros/taller/p17.webp",
+   "textos": [
+    {
+     "x": 15.8,
+     "y": 77.04,
+     "w": 73.87,
+     "h": 8.78,
+     "tam": 2.52,
+     "serif": false,
+     "fino": true,
+     "texto": "© 2026 Fufú Studio. Todos los derechos reservados.\nEste libro es único, como tú. No se permite la copia ni reprodución digital o impresa sin permiso de su autor."
+    }
+   ],
+   "huecos": []
+  }
+ ]
+}

@@ -1,0 +1,5 @@
+node_modules/
+salida/
+# Arial es de Microsoft: no se puede publicar (solo para generar STL en local)
+web/assets/arialbd.ttf
+.claude/
